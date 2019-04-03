@@ -54,11 +54,16 @@ Park.prototype.removeDinosaursBySpecies = function(species){
 
 Park.prototype.totalNumberOfVisitorsPerDay = function () {
   let count = 0;
+
   for (let dinosaur of this.collectionOfDinosaurs){
     count += dinosaur.guestsAttractedPerDay;
   }
   return count;
 };
+
+// Park.prototype.totalNumberOfVisitorsPerYear = function () {
+//   return this.totalNumberOfVisitorsPerDay() * 360;
+// };
 
 Park.prototype.totalNumberOfVisitorsPerYear = function () {
   let count = 0;
@@ -71,5 +76,18 @@ Park.prototype.totalNumberOfVisitorsPerYear = function () {
 Park.prototype.totalRevenuePerYear = function () {
   let peopleVisitingYearly = this.totalNumberOfVisitorsPerYear();
   return peopleVisitingYearly * this.ticketPrice;
+};
+
+Park.prototype.numberOfDinosaursByDiet = function () {
+  const numberOfDinosaursByDiet = {};
+
+  for (const dinosaur of this.collectionOfDinosaurs) {
+    if (numberOfDinosaursByDiet[dinosaur.diet]) {
+      numberOfDinosaursByDiet[dinosaur.diet] += 1;
+    } else {
+      numberOfDinosaursByDiet[dinosaur.diet] = 1;
+    }
+  }
+  return numberOfDinosaursByDiet;
 };
 module.exports = Park;
